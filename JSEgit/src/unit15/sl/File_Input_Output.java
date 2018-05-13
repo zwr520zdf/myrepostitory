@@ -17,7 +17,6 @@ public class File_Input_Output {
         }
 
         //读取数据：创建FileInputStream类对象
-
         try {
             FileInputStream in=new FileInputStream(file);
             byte byt[]=new byte[(int) file.length()];//根据文件长度创建字节数组

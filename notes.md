@@ -50,6 +50,14 @@
 
 7. 数据类型转换：小类型到大类型自动转换，大类型到小类型需要强转。
 
+### 第3章小结：
+
+* 了解Java的特殊字符
+* 熟练掌握Java的8种数据类型
+* 熟练使用Java变量
+* 理解类型转换
+* 熟练掌握运算符的优先级
+
 ***
 
 ## 第四章：流程控制
@@ -87,6 +95,27 @@
     }
 ```
 
+```计算器
+        Scanner in=new Scanner(System.in);
+        System.out.print("输入乘法表：");
+        int num=in.nextInt();
+        for(int i=1;i<=num;i++){
+            for(int j=1;j<=i;j++){
+                System.out.print(i+"*"+j+"="+(i*j)+"\t");
+            }
+            System.out.println();
+        }
+
+```
+
+### 第4章小结：
+
+* if-else条件分支语句
+* switch-case开关语句
+* 循环结构语法及使用场合
+* break和continue语句的区别
+* 嵌套循环
+
 ***
 
 ## 第五章：字符串
@@ -99,6 +128,21 @@
 * StringBuffer是可变的字符串，StringBuffer的默认容量大小是16个字符
 * StringBuffer转换为String使用toString
 * append()追加内容，insert()
+
+```字符串基本操作
+ String str=new String("hello");
+        System.out.println(str);
+        System.out.println(str.lastIndexOf(""));/*当lastIndexOf("")为空返回字符串长度*/
+        System.out.println(str.charAt(1)); //下标从1开始
+        System.out.println(str.length());
+        System.out.println(str.indexOf("o"));
+        System.out.println(str.substring(3));
+        System.out.println(str.substring(2,3));//从固定位置开始截取
+```
+
+### 第5章小结：
+
+学习常规的字符串创建，连接的方式，以及获取字符串信息等操作，在字符串高级应用方面：格式化字符串、使用正则表达式。
 
 ***
 
@@ -120,6 +164,14 @@ int arr[][]=new int[1][2];
 * 数组排序：Arrays.sort(obj)对数组的升序
 * 冒泡法
 * 选择排序法
+
+### 第6章小结：
+
+* 一维数组的声明和定义
+* 一维数组的应用
+* 二维数组的声明和定义
+* 二维数组的应用
+* 数组排序方法，以及关键冒泡法排序
 
 ***
 
@@ -283,6 +335,39 @@ int arr[][]=new int[1][2];
   * catch：在try后面，用来激发被捕捉的异常
   * finally：最后执行的部分，无论try语句块中的代码，如何退出，都将执行finally语句块
 
+* 异常的分类：
+
+![异常的分类](https://i.loli.net/2018/05/13/5af7b4188a72f.png)
+
+* Error类通常用以描述Java运行系统中的内部错误以及资源耗尽的错误等，一般是指JVM错误
+* Exception类被称为非致命性异常，可以通过捕获处理后正常运行 ，可以分为两种：RuntimeException异常和Runtime Exception之外的异常
+* RuntimeException异常又被称为运行时异常，即程序在运行阶段出现的异常；RuntimeException之外的异常又被称为编译时异常，即程序在编译阶段出现的异常。
+
+``` 常见异常：
+public class Demo {
+    private String name;
+    private int age;
+    //属性对应的getter/setter
+....
+ public static void main(String[] args) {
+       Demo d=null;
+        System.out.println(d.getName());
+//Exception in thread "main" java.lang.NullPointerException 空指针异常
+
+        String stuName = " tom" ;
+         int result = Integer.parseInt(stuName);
+//java.lang.NumberFormatException: For input string: " tom" 数字转换异常
+    }
+}
+
+```
+
+* throws异常处理：还可以通过throws声明某个方法可能抛出的异常，使用throws声明的方法表示此方法不处理异常,而是交给方法的调用处进行处理。
+
+### 第十二章小结：
+
+理解异常是程序运行过程中发生的错误，即不正常的事情，异常会中止程序的运行。Throwable是所有异常类的父类；异常类分为Error和Exception两大类，程序中可以使用try-catch-finally对异常进行捕捉处理，也可以使用throws和throw进行，自定义异常类使开发人员更加方便地定义程序出错位置且更加详细地描述异常信息。
+
 ***
 
 ## 第十四章：集合类
@@ -342,7 +427,7 @@ Object|next()|返回迭代的下一个元素
   * HashMap：基于哈希表的Map接口的实现，提供所有可选的映射操作，允许出现null键值，但必须保证键的唯一性，不保证映射的顺序恒久不变
   * TreeMap：实现Map接口，还是实现java.util.SortedMap接口，在添加和删除以及定位映射关系时，比HashMap类性能差，实现Map集合中的映射关系是根据键对象按照一定的顺序排序，因此不允许对象是null
 
-### 小结：
+### 第14章小结：
 
 本章学习了3个常见集合，List、Set、Map集合,其中List集合是存储有序并且允许重复元素，常用的ArrayList实现类，类似可变数组，但是插入和删除要依据索引位置来所以效率不高，LinkedList虽然便于插入和删除，但是随机访问集合中的对象所以效率也不高，Set集合采用无序的方式存储并且不能包含重复元素，另有HashSet和TreeSet两个实现类，Map集合采用将键值对数据存储，不允许重复键，元素无序，有HashMap和TreeMap实现类
 
@@ -379,6 +464,36 @@ boolean|canRead()|判断文件是否为可读的
 String|getAbsolutePath()|获取文件的绝对路路径
 boolean|exits()|判断文件是否为存在
 
+```文件创建
+ //指定路径下创建文件
+File file=new File("F:/Interllij IDEA/workpace/trunk/javase/src/unit15/sl/word.text");
+    if ((file.exists())){
+    file.delete();//判断文件是否存在，存在就删除
+    System.out.println("文件删除");
+        }else {
+            try {  //try-catch扑捉文件的异常
+                file.createNewFile();
+                System.out.println("文件已经建立");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+```
+
+```字节流
+ //读取数据：创建FileInputStream类对象
+        try {
+            FileInputStream in=new FileInputStream(file);
+            byte byt[]=new byte[(int) file.length()];//根据文件长度创建字节数组
+            in.read(byt);//读取的数据放入字节数组中
+            String str=new String(byt);//利用字节数组创建字符串
+            //将文件中的信息输出
+            System.out.println(str);
+            in.close();//关闭流
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+```
+
 * 文件输入/输出流:FileInputStream:向文件读取数据,FileOutputStream：向文件写入数据
 
 * FileReader和FileWriter类
@@ -412,7 +527,9 @@ boolean|exits()|判断文件是否为存在
 
 * 压缩文件：利用ZipOutputStream类对象，可将文件压缩为.zip文件
 
-### 小结：Java中使用File类来实现创建、删除文件或目录的操作,输入输出流主要分为：字节流和字符流，在传输中较多使用字节流，字符流在操作时使用缓冲区，字节流不使用缓冲区,了解数据输入/输出流以及基本操作。
+### 第十六小结：
+
+Java中使用File类来实现创建、删除文件或目录的操作,输入输出流主要分为：字节流和字符流，在传输中较多使用字节流，字符流在操作时使用缓冲区，字节流不使用缓冲区,了解数据输入/输出流以及基本操作。
 
 ***
 
@@ -426,5 +543,46 @@ boolean|exits()|判断文件是否为存在
 * valuesOf()将普通字符串转为枚举类型
 * ordinal()获取某个枚举对象的索引值
 
-* test)00000000000000000000000000
-* sssss
+```定义枚举的构造方法
+ Constants_A("我是枚举成员A"), // 定义带参数的枚举类型成员
+        Constants_B("我是枚举成员B"), Constants_C("我是枚举成员C"), Constants_D(3);
+        private String description;
+        private int i = 4;
+        private Constants2() {
+        }
+        // 定义参数为String型的构造方法
+        private Constants2(String description) {
+            this.description = description;
+        }
+```
+
+* 泛型：
+  * 概述:泛型在建立对象时不指定类中属性的具体类型，而是在声明及实例化对象时由外部指定。泛型可以提高数据安全性
+
+  * 泛型对象定义：
+    * 类名称<具体类> 对象名称 = new 类名称<具体类>();
+
+  * 应用：
+    * 泛型的类型参数只能是类类型，不能是简答的类型
+    * 泛型的类型个数可以是多个
+    * 可以使用extends关键字限制泛型的类型
+    * 可以使用通配符限制泛型的类型
+
+```泛型应用
+    //统一集合List中元素的数据类型是Student类型
+        List<Student> list = new ArrayList<>();
+        Student stu1 = new Student();
+        stu1.setStuName("tom");
+        stu1.setAge(20);
+        Student stu2 = new Student();
+        stu2.setStuName("jack");
+        stu2.setAge(19);
+        list.add(stu1);
+        list.add(stu2);
+        //list.add("java oop");
+        //不允许将String类型元素添加至集合中
+```
+
+### 第十七章总结：
+
+枚举类型安全性好，具有紧凑有效的数据定义，可以和其他程序完美交互。泛型是指建立对象时不指定类中属性的具体类型，而是在声明及实例化对象时由外部指定 。它可以解决数据安全性问题，其定义包含泛型类和泛型对象的定义。
