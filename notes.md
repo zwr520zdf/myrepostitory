@@ -12,6 +12,10 @@
 * 高性能
 * 动态
 
+## 第1章总结：
+
+了解java语言的特性，掌握在windows操作系统下搭建java环境。
+
 2.编译环境:
 
 * JDK: java开发工具包，是程序员使用java语言编写java程序所需的开发工具包，是提供给程序员使用的。JDK包含了JRE，同时还包含了编译java源码的编译器javac，还包含了很多java程序调试和分析的工具。
@@ -163,6 +167,20 @@ int arr[][]=new int[1][2];
 
 * 数组排序：Arrays.sort(obj)对数组的升序
 * 冒泡法
+
+```冒泡法
+System.out.println("---冒泡排序----");
+        for(int i=0;i<y.length;i++){
+            for(int j=0;j<y.length-1;j++){
+                if(y[j]>y[j+1]){
+                    int temp=y[j];
+                    y[j]=y[j+1];
+                    y[j+1]=temp;
+                }
+            }
+        }
+```
+
 * 选择排序法
 
 ### 第6章小结：
@@ -220,6 +238,16 @@ int arr[][]=new int[1][2];
 * 对象的创建过程：实质上就是使用new操作调用构造方法创建对象
 * 访问对象的属性和方法："对象.类成员"
 
+### 第7章小结：
+
+* 面向对象（OOP）的编程思想
+* 类、对象
+* 类和对象的关系
+* 修饰符的范围
+* 对象的操作
+* 构造方法
+* 构造方法的重载
+
 ***
 
 ## 第八章：包装类
@@ -240,6 +268,12 @@ int arr[][]=new int[1][2];
 
 3. Character:Character类在对象中包装了一个基本类型为char值。一旦Charater类被创建，它包含的数值就不能被改变了
 
+### 第8章小结：
+
+* 掌握数字、字符、布尔值、的包装类
+* Character类是字符的包装类，提供了对字符的各种处理方法
+* 掌握各种包装类提供的方法
+
 ***
 
 ## 第九章：数字处理类
@@ -250,6 +284,10 @@ int arr[][]=new int[1][2];
 * 返回小于等于参数的最大整数：Math.floor()
 * Random类：java编译器以系统当前时间作为随机数生成器的种子
 * BigInteger针对大整数的处理类和BigDecimal针对大小数的处理类。
+
+### 第9章小结：
+
+掌握任意随机数的生成，数字的格式化，以及大数字处理和基本的数学运算。
 
 ***
 
@@ -271,19 +309,25 @@ int arr[][]=new int[1][2];
     * 6.子类类型到父类类型可以自动类型转换,父类类型到子类类型需要强制类型转换(父类类型实际上是一个子类对象才可以)
     * 7.区分父类对象和子类对象使用的关键字:this本类 super父类
 
-2. Objcet类：java.lang.Object类是所有类的父类
+2. 在使用 super和this时我们需要注意以下4个方面：
+   * 每个子类构造方法中首先会隐含地调用super(),然后执行构造方法中的代码
+   * super()和this()均需放在构造方法内第一行
+   * this和super不能同时出现在一个构造函数中
+   * this()和super()均不可以在static环境中使用。包括static方法、static语句块
+
+3. Objcet类：java.lang.Object类是所有类的父类
     * Object类中的getClass()、notify()、notifyAll()、wait()等方法不能被重写，因为这些方法被定义为final类型
 
-3. 重载：方法名字相同,参数类型，参数个数，参数顺序不同
+4. 重载：方法名字相同,参数类型，参数个数，参数顺序不同
     * 在同一个类中
     * 方法名一样
     * 参数列表不一样
     * 跟返回值类型没有关系
 
-4. 多态:一个对象的某种行为有多种实现方式
+5. 多态:一个对象的某种行为有多种实现方式
     * 多态实现的方式：重载和重写
 
-5. 抽象类:使用关键字abstract修饰的类
+6. 抽象类:使用关键字abstract修饰的类
     * 1.抽象类不能实例化
     * 2.抽象类可以有构造方法
     * 3.可以有非抽象类中用于的一切
@@ -293,16 +337,36 @@ int arr[][]=new int[1][2];
     * 7.抽象方法不能是static和final和private：这三个修饰的都不能被重写，抽象方法需要被重写
     * 8.final修饰的方法不能被重写
 
-6. 接口:使用interface关键字修饰的
-    * 接口中定义方法必须定义为：public或abstract
-    * 接口中定义的任何字段都是静态常量:public static final可以省略
-    * 接口支持多继承
-    * 接口不能实例化  接口没有构造方法
-    * 实现接口使用implements关键字
-    * 必须实现接口所有的方法（除非本身就是抽象类接口）
-    * 静态方法不能被子类重写（覆盖），因此接口中不定声明静态方法
-    * 实现多个接口用逗号隔开
-    * 接口里面的方法用;结束
+```抽象类
+public abstract class abstractBook {
+    //public abstract void sum();
+    public abstractBook() {
+    }
+    public static void main(String[] args) {
+     //   abstractBook ab=new abstractBook();
+        // 不能实例化对象cannot be instantiated
+    }
+}
+```
+
+* 接口:使用interface关键字修饰的
+  * 接口中定义方法必须定义为：public或abstract
+  * 接口中定义的任何字段都是静态常量:public static final可以省略
+  * 接口支持多继承
+  * 接口不能实例化  接口没有构造方法
+  * 实现接口使用implements关键字
+  * 必须实现接口所有的方法（除非本身就是抽象类接口）
+  * 静态方法不能被子类重写（覆盖），因此接口中不定声明静态方法
+  * 实现多个接口用逗号隔开
+  * 接口里面的方法用;结束
+
+### 第10章总结：
+
+* 多态的两种形式：重载与重写
+* 方法重载方法名相同，参数列表不同
+* 方法重写方法名、返回类型、参数列表相同，子类方法范围不能比父类小
+* 抽象类是用来继承的，有抽象方法的类一定是抽象类，抽象类不一定有抽象方法
+* 接口允许多继承，接口中的属性的修饰符默认是public、static、final，方法修饰符默认是public、abstract
 
 ***
 
@@ -323,6 +387,11 @@ int arr[][]=new int[1][2];
         * 修饰的类表示最终的类不能被继承
 3. 内部类
     * 内部类可以随便使用外部类的成员方法和成员变量
+    * 局部内部类：内部类不仅可以在类中进行定义，还可以在类的局部位置定义。
+
+### 第11章小结：
+
+掌握包、final关键字的用法和内部类，同时了解如何导包，定义final变量，final方法以及final类。
 
 ***
 
@@ -527,9 +596,46 @@ File file=new File("F:/Interllij IDEA/workpace/trunk/javase/src/unit15/sl/word.t
 
 * 压缩文件：利用ZipOutputStream类对象，可将文件压缩为.zip文件
 
-### 第十六小结：
+### 第15小结：
 
 Java中使用File类来实现创建、删除文件或目录的操作,输入输出流主要分为：字节流和字符流，在传输中较多使用字节流，字符流在操作时使用缓冲区，字节流不使用缓冲区,了解数据输入/输出流以及基本操作。
+
+***
+
+## 第十六章：反射
+
+* 概述：JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意一个方法和属性；这种动态获取的信息以及动态调用对象的方法的功能称为java语言的反射机制。
+
+* 利用Constructor访问构造方法：每个Constructor对象代表一个构造方法，利用Constructor对象可以操纵相应的构造方法。
+  * getConstructors()
+  * getConstructor(Class<?>... parameterTypes)
+  * getDeclaredConstructors()
+  * getDeclaredConstructor(Class<?>... parameterTypes)
+
+* 使用Annotation功能
+  * 定义Annotation信息：在定义Annotation类型时，也需要用到用来定义接口的interface关键字，不过需要在interface关键字前加一个“@”符号，即定义Annotation类型的关键字为@interface，这个关键字的隐含意思是继承了java.lang.annotation.Annotation接口。
+
+```定义Annotiation类型
+@Target(ElementType.CONSTRUCTOR)
+// 用于构造方法
+@Retention(RetentionPolicy.RUNTIME)
+// 在运行时加载Annotation到JVM中
+public @interface Constructor_Annotation {
+    String value() default "默认构造方法";
+    // 定义一个具有默认值的String型成员
+}
+```
+
+* 访问Annotation：
+  * 如果在定义Annotation类型时将@Retention设置为RetentionPolicy.RUNTIME，那么在运行程序时通过反射就可以获取到相关的Annotation信息，如获取构造方法、字段和方法的Annotation信息。
+  * 类Constructor、Field和Method均继承AccessibleObject类，在AccessibleObject中定义了3个关于Annotation的方法，
+    * 方法isAnnotationPresent用来查看是否添加了指定类型的Annotation，如果是则返回true，否则返回false；
+    * 方法getAnnotation用来获得指定类型的Annotation，如果存在则返回相应的对象，否则返回null；
+    * 方法getAnnotations()用来获得所有的Annotation，该方法将返回一个Annotation数组。
+
+### 第16章总结：
+
+掌握java反射机制的使用方法，利用java反射机制可以在程序运行是访问类的所有描述信息如：构造方法、成员变量等，实现逆向控制程序的执行过程。利用Annotation功能，可以对类、构造方法、成员变量、方法进行注释，在程序运行是通过反射可以读取这些信息。
 
 ***
 
@@ -586,3 +692,92 @@ Java中使用File类来实现创建、删除文件或目录的操作,输入输�
 ### 第十七章总结：
 
 枚举类型安全性好，具有紧凑有效的数据定义，可以和其他程序完美交互。泛型是指建立对象时不指定类中属性的具体类型，而是在声明及实例化对象时由外部指定 。它可以解决数据安全性问题，其定义包含泛型类和泛型对象的定义。
+
+***
+
+## 第十八章多线程：
+
+* 概念：程序可以同时完成多件事情。
+
+* 特点：一个线程则是进程中的执行流程，一个进程可以同时包含多个线程，每个线程可以得到一小段程序的执行时间，这样一个进程就可以具有多个并发执行的线程。
+
+* 实现线程的两种方式：
+  * 继承Thread类：
+    * public Thread(String threadName):创建一个名称为threadName的线程对象
+    * public Thread():创建一个新的线程对象
+    * 完成线程真正的功能的代码放在类的run()方法中，当一个类继承Thread类后，就可以在改类中覆盖run()方法，将实现该线程功能的代码写入run()方法，然后同时调用Thread类中的start()方法执行线程，就是调用run()方法。
+
+```Thread实现多线程
+ private  int num=20; //声明变量
+    public void run(){
+        //重写run方法
+        while (true){
+            System.out.print(num+" ");//打印数字num
+            num--;
+            if (num==0){
+                System.out.println();
+                break;//当等于0时候退出循环
+            }
+        }
+    }
+    public static void main(String[] args) {
+        ThreadTest t1=new ThreadTest();//实例化对象
+        ThreadTest t2=new ThreadTest();
+        t1.start();//启动线程
+        //t1.start();继承Thread类受单继承影响，不适合多个线程共享资源
+        t2.start();
+    }
+```
+
+* 实现Ruunable接口
+  * 步骤:
+    * 建立Runnable对象
+    * 使用参数为Runnable对象的构造方法创建Thread实例
+    * 调用start()方法启动线程
+
+```Runnable接口
+public class RunnableTest implements Runnable{
+    //实现Runnable接口
+    private String  name; //定义变量
+    public void run() { //重写run方法
+        for(int i=1;i<=5;i++){
+            System.out.println(name+"运行,i="+i);
+        }
+    }
+    public static void main(String[] args) {
+        RunnableTest r1 = new RunnableTest();
+        RunnableTest r2 = new RunnableTest();
+        new Thread(r1).start();
+        new Thread(r2).start();  //启动线程
+    }
+}
+
+```
+
+* 线程的生命周期：线程具有生命周期，其中包含7种状态，分别为出生状态、就绪状态、运行状态、等待状态、休眠状态、阻塞状态和死亡状态。
+  * 出生状态就是用户在创建线程时处于的状态，在用户使用该线程实例调用start()方法之前线程都处于出生状态；
+  * 当用户调用start()方法后，线程处于就绪状态（又被称为可执行状态）；
+  * 当线程得到系统资源后就进入运行状态。
+
+![线程状态.png](https://i.loli.net/2018/05/14/5af8f874360bf.png)
+
+* 操作线程的方法：
+  * 线程的休眠：sleep()方法需要一个参数用于指定该线程休眠的时间，改时间以毫秒为单位
+  * 线程的加入：当某个线程使用join()方法加入到另外一个线程时，另一个线程会等待该线程执行完毕再继续执行。
+  * 线程的中断：在run()方法中使用无限循环的形式，然后使用一个布尔型标记控制循环的停止。
+  * 线程的礼让：yield()方法使具有同样优先级的线程有进入可执行状态的机会，当当前线程放弃执行权时会再度回到就绪状态
+
+* 线程的优先级：每个线程都具有各自的优先级，线程的优先级可以在程序中表明该线程的重要性，如果有很多线程处于就绪状态，系统会根据优先级来决定首先使哪个线程进入运行状态。但这并不意味着低优先级的线程得不到运行，而只是它运行的几率比较小，比如垃圾回收线程的优先级就较低。
+
+* 线程的同步:同步是指在同一时间段内只能运行一个线程。
+  * 同步块：同步机制使用synchronized关键字
+  * 同步方法：Synchronized void 方法名称(参数列表){}
+
+### 第18章总结：
+
+* 理解进程与线程的概念
+* 掌握多线程的实现
+* 掌握使用线程同步解决线程安全
+* 理解线程生命周期
+
+***
