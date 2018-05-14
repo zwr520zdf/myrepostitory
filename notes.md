@@ -79,8 +79,11 @@
 4. do-while循环
     * 程序至少执行一次
 
-5. for循环
-    * foreach语句:变量x不必进行初始化
+![do-while](https://i.loli.net/2018/05/14/5af90b1f96efe.png)
+
+5.for循环
+
+* foreach语句:变量x不必进行初始化
 
 ``` 代码
     for(变量x:遍历对象obj){
@@ -267,6 +270,8 @@ System.out.println("---冒泡排序----");
 2. Boolean：Boolean类在对象中包装了一个基本类型boolean。
 
 3. Character:Character类在对象中包装了一个基本类型为char值。一旦Charater类被创建，它包含的数值就不能被改变了
+
+![包装类](https://i.loli.net/2018/05/14/5af90ba4deccf.png)
 
 ### 第8章小结：
 
@@ -781,3 +786,46 @@ public class RunnableTest implements Runnable{
 * 理解线程生命周期
 
 ***
+
+## 第十九章：网络通信
+
+* 局域网与因特网
+  * 服务器是指提供信息的计算机或程序，
+  * 客户机是指请求信息的计算机或程序，
+  * 网络用于连接服务器与客户机，实现两者相互通信。但有时在某个网络中很难将服务器与客户机区分开。我们通常所说的“局域网”（Local Area Network，LAN），就是一群通过一定形式连接起来的计算机。它可以由两台计算机组成，也可以由同一区域内的上千台计算机组成。由LAN延伸到更大的范围，这样的网络称为“广域网”（Wide Area Network，WAN）。我们熟悉的因特网（Internet），则是由无数的LAN和WAN组成。
+
+* 网络协议
+  * ip协议：一种网络协议。IP地址采用4个字节，32位的二进制数表示IPv4
+  * TCP协议：是一种以固连接线为基础的协议，它提供两台计算机间可靠的数据传送
+* ServerSocket类：用于表示服务器套接字，其主要功能是等待来自网络上的“请求”，它可通过指定的端口来等待连接的套接字。服务器套接字一次可以与一个套接字连接。如果多台客户机同时提出连接请求，服务器套接字会将请求连接的客户机存入列队中，然后从中取出一个套接字，与服务器新建的套接字连接起来。若请求连接数大于最大容纳数，则多出的连接请求被拒绝。队列的默认大小是50。
+
+```获取ip
+ InetAddress ip; // 创建InetAddress对象
+        try { // try语句块捕捉可能出现的异常
+            ip = InetAddress.getLocalHost(); // 实例化对象
+            String localname = ip.getHostName(); // 获取本机名
+            String localip = ip.getHostAddress(); // 获取本IP地址
+            System.out.println("本机名：" + localname);// 将本机名输出
+            System.out.println("本机IP地址：" + localip); // 将本机IP输出
+```
+
+* ServerSocket类的构造方法都抛出IOException异常，分别有以下几种形式。
+  * ServerSocket()：创建非绑定服务器套接字。
+  * ServerSocket(int port)：创建绑定到特定端口的服务器套接字。
+  * ServerSocket(int port, int backlog)：利用指定的backlog创建服务器套接字并将其绑定到指定的本地端口号。
+
+* TCP网络程序：在网络编程中如果只要求客户机向服务器发送消息，不用服务器向客户机发送消息，称为单向通信。客户机套接字和服务器套接字连接成功后，客户机通过输出流发送数据，而服务器会使用输入流接收数据
+
+* DatagramPacket类
+  * DatagramPacket(byte[] buf , int length)
+  * DatagramPacket(byte[] buf , int length , InetAddress address , int port)
+  * 第一种构造函数创建DatagramPacket对象，指定了数据包的内存空间和大小。
+  * 第二种构造函数不仅指定了数据包的内存空间和大小，而且指定了数据包的目标地址和端口。在发送数据时，必须指定接收方的Socket地址和端口号，因此使用第二种构造函数可创建发送数据的DatagramPacket对象。
+
+### 第19章总结
+
+* 掌握局域网与因特网
+* 网络协议
+* ServerSocket类
+* TCP网络程序
+* DatagramPacket类
