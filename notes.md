@@ -829,3 +829,92 @@ public class RunnableTest implements Runnable{
 * ServerSocket类
 * TCP网络程序
 * DatagramPacket类
+
+***
+
+## 第20章数据库操作
+
+* 数据库：一种存储结构，它允许使用各种格式输入、处理和检索数据——不必在每次需要数据时重新输入它们。
+
+* 数据库特点：
+  * 实现数据共享。
+  * 减少数据的冗余度。
+  * 数据的独立性。
+  * 数据实现集中控制。
+  * 数据的一致性和可维护性，以确保数据的安全性和可靠性。
+
+* SQL语言：结构化查询语言，使用SQL语言可以方便地查询、操作、定义和控制数据库中的数据。
+
+  * 数据定义语言，如create、alter、drop等。
+  * 数据操纵语言，如select、insert、update、delete等。
+  * 数据控制语言，如grant、revoke等。
+  * 事务控制语言，如commit、rollback等。
+
+* JDBC:数据库连接，它提供了用于执行 SQL语句标准的Java API，可以方便实现多种关系数据库的统一操作； JDBC由一组用Java语言编写的类与接口组成
+
+* 操作步骤
+  * 加载驱动类;
+  * 与数据库建立连接；
+  * 执行SQL语句
+  * 处理结果集
+  * 关闭连接
+
+* Connection接口：与特定的数据库的连接
+
+![Connection](https://i.loli.net/2018/05/15/5afa3cc2453d5.png)
+
+* Statement接口：用于创建向数据库中传递SQL语句的对象
+
+![Statement接口](https://i.loli.net/2018/05/15/5afa3d543d2d6.png)
+
+* PreparedStatement接口：PreparedStatement接口继承Statement，用于执行动态的SQL语句，通过PreparedStatement实例执行的SQL语句，将被预编译并保存到PreparedStatement实例中
+
+![Statement接口与PreparedStatement接口比较](https://i.loli.net/2018/05/15/5afa3da7b2636.png)
+
+* ResultSet接口:ResultSet接口类似于一个临时表，用来暂时存放数据库查询操作所获得的结果集.
+
+![ResultSet接口](https://i.loli.net/2018/05/15/5afa3da7b01fa.png)
+
+```查询
+  PreparedStatement pst=null;  //声明预处理对象
+        sql="select * from users where userId>?";
+        try {
+            pst=con.prepareStatement(sql); //实例化预处理对象
+            pst.setInt(1,3);//设置参数
+            rst=pst.executeQuery();//执行预处理语句
+            System.out.println(pst.execute());
+            while (rst.next()){
+            System.out.println("编号："+rst.getInt("userId")+"姓名："+rst.getString("username"));
+        }
+```
+
+``` 增加
+System.out.println("=============增加操作=============");
+        sql="insert into users values(default,?,?,?,null,null,null,null,default)"; //自增长id直接设置为Null
+       try {
+            con.setAutoCommit(false);//取消自动提交事务
+            pst=con.prepareStatement(sql);
+            pst.setString(1,"abc");
+            pst.setInt(2,321);
+            pst.setString(3,"abctest");
+            if (!pst.execute()){
+                con.commit();//成功后提交事务
+                System.out.println("添加成功");
+            }
+
+        } catch (SQLException e) {
+            try {
+                con.rollback(); //失败后事务回滚
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+        }
+```
+
+### 第20章总结：
+
+* 了解数据库
+* JDBC操作数库的步骤
+* 掌握Connection、Statement、PreparedStatement、ResultSet接口
+* 常用的SQL语句的操作
+* 实现基本的增删改查功能
