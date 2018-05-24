@@ -25,10 +25,23 @@ public class StudentDao {
         String sql="insert into student values(default,?,?,?)";
         //插入信息
         student st=new student();
+        check c=new check();
         System.out.print("姓名:");
         st.setStuname(in.next());
-        System.out.print("学号:");
-        st.setStunum(in.next());
+        Loop:while (true){
+            System.out.print("学号:");
+            StudentDao sd=new StudentDao();
+            String s=in.next();
+            List<stuscore> list = sd.getscore(s);
+            if(!list.isEmpty()){
+                System.out.println("学号存在，请重新输入！");
+            }
+            else {
+                st.setStunum(s);
+                break Loop;
+            }
+
+        }
         System.out.print("年龄:");
         st.setAge(in.nextInt());
         Object[] obj={st.getStuname(),st.getStunum(),st.getAge()};

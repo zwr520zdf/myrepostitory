@@ -28,6 +28,7 @@ public class check {//校验类
         return stunum;
     }
 
+
     // 校验判断是否输入正确科目：
     public int courseCheck() {
         Loop:while (true) {

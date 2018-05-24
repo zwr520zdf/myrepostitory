@@ -4,7 +4,7 @@ import java.sql.*; //导入sql包
 
 public class Conn {
     private static final String driver = "com.mysql.jdbc.Driver";// 数据库连接的驱动类的路径
-    private static final String url = "jdbc:mysql://localhost:3306/test";// 连接数据库的url地址
+    private static final String url = "jdbc:mysql://localhost:3306/aaa";// 连接数据库的url地址
     private static final String userName = "sa";// 连接数据库的用户名
     private static final String pwd = "170130";// 连接数据库的密码
     Connection con; //声明Connetion对象

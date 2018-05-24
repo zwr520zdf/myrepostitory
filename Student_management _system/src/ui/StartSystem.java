@@ -5,7 +5,6 @@ import dao.check;
 import entity.student;
 import entity.stuscore;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -29,7 +28,7 @@ public class StartSystem {
             System.out.println("*      8.查询所有学生成绩  *");
             System.out.println("*      0.退出系统          *");
             System.out.println("****************************");
-
+            System.out.print("输入操作：");
             int op=in.nextInt();//输入数字
             switch (op){
                 case 1:
