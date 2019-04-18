@@ -8,7 +8,7 @@ public class Fs_Arrays {
         test.is = (int[]) addArrayLength(test.is, 10);
         test.ss = (String[]) addArrayLength(test.ss, 10);
         test.print();
-
+////
     }
 
     public static Object addArrayLength(Object array, int newLength) {
